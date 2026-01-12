@@ -29,16 +29,20 @@ body {
   animation: float 6s ease-in-out infinite;
   position: relative;
   overflow: hidden;
+  z-index: 1; /* 🔑 keep content above */
 }
 
-/* sparkle glow */
+/* sparkle glow FIXED */
 .container::before {
   content: "";
   position: absolute;
   inset: -50%;
   background: radial-gradient(circle, rgba(255,255,255,0.15), transparent 60%);
   animation: sparkle 10s linear infinite;
+  pointer-events: none; /* 🔑 allow clicks */
+  z-index: -1;          /* 🔑 push behind */
 }
+
 
 /* ===== HEADINGS ===== */
 h1 {
