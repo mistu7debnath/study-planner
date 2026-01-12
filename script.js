@@ -1,21 +1,30 @@
-let topics = JSON.parse(localStorage.getItem("topics")) || [];
+let studyData = JSON.parse(localStorage.getItem("studyData")) || [];
 
+/* Difficulty → Recommended Hours */
+function calculateHours(difficulty) {
+  if (difficulty === "easy") return 1.5;
+  if (difficulty === "medium") return 2.5;
+  if (difficulty === "hard") return 4;
+}
+
+/* Add topic */
 function addTopic() {
-  const subject = document.getElementById("subject").value;
-  const topic = document.getElementById("topic").value;
+  const subject = document.getElementById("subject").value.trim();
+  const topic = document.getElementById("topic").value.trim();
   const difficulty = document.getElementById("difficulty").value;
-  const hours = document.getElementById("hours").value;
 
-  if (!subject || !topic || !difficulty || !hours) {
+  if (!subject || !topic || !difficulty) {
     alert("Please fill all fields");
     return;
   }
 
-  topics.push({
+  const hours = calculateHours(difficulty);
+
+  studyData.push({
     subject,
     topic,
-    difficulty: Number(difficulty),
-    hours: Number(hours),
+    difficulty,
+    hours,
     completed: false
   });
 
@@ -23,44 +32,49 @@ function addTopic() {
   clearInputs();
 }
 
+/* Render study plan */
 function renderPlan() {
-  const planList = document.getElementById("planList");
-  planList.innerHTML = "";
+  const list = document.getElementById("planList");
+  list.innerHTML = "";
 
-  topics
-    .sort((a, b) => b.difficulty - a.difficulty)
-    .forEach((item, index) => {
-      const li = document.createElement("li");
+  studyData.forEach((item, index) => {
+    const li = document.createElement("li");
 
-      li.innerHTML = `
-        ${item.subject} - ${item.topic} (${item.hours} hrs)
-        <input type="checkbox" ${item.completed ? "checked" : ""} 
+    li.innerHTML = `
+      <span>
+        <b>${item.subject}</b> – ${item.topic}
+        <br>
+        <small>Difficulty: ${item.difficulty.toUpperCase()} | ⏱ ${item.hours} hrs</small>
+      </span>
+      <input type="checkbox" ${item.completed ? "checked" : ""} 
         onchange="toggleComplete(${index})">
-      `;
+    `;
 
-      planList.appendChild(li);
-    });
+    list.appendChild(li);
+  });
 
   updateProgress();
 }
 
+/* Mark complete */
 function toggleComplete(index) {
-  topics[index].completed = !topics[index].completed;
+  studyData[index].completed = !studyData[index].completed;
   saveAndRender();
 }
 
+/* Progress calculation */
 function updateProgress() {
-  const completed = topics.filter(t => t.completed).length;
-  const total = topics.length;
+  const completed = studyData.filter(item => item.completed).length;
+  const total = studyData.length;
   const percent = total === 0 ? 0 : Math.round((completed / total) * 100);
 
   document.getElementById("progressBar").style.width = percent + "%";
-  document.getElementById("progressText").innerText =
-    `${percent}% Completed`;
+  document.getElementById("progressText").innerText = `${percent}% Completed`;
 }
 
+/* Helpers */
 function saveAndRender() {
-  localStorage.setItem("topics", JSON.stringify(topics));
+  localStorage.setItem("studyData", JSON.stringify(studyData));
   renderPlan();
 }
 
@@ -68,12 +82,11 @@ function clearInputs() {
   document.getElementById("subject").value = "";
   document.getElementById("topic").value = "";
   document.getElementById("difficulty").value = "";
-  document.getElementById("hours").value = "";
 }
 
 function clearAll() {
-  if (confirm("Clear all data?")) {
-    topics = [];
+  if (confirm("Clear entire study planner?")) {
+    studyData = [];
     saveAndRender();
   }
 }
