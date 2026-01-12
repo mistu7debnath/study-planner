@@ -1,78 +1,182 @@
+/* ========== RESET & BASE ========== */
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: "Segoe UI", system-ui, sans-serif;
 }
 
 body {
-  background: #f4f6fb;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 20px;
+  color: #eaeaea;
 }
 
+/* ========== CONTAINER ========== */
 .container {
-  max-width: 600px;
-  margin: auto;
-  background: #fff;
-  padding: 25px;
-  border-radius: 10px;
+  width: 100%;
+  max-width: 520px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  animation: float 6s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
 }
 
-h1, h2 {
+/* subtle sparkle glow */
+.container::before {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.15), transparent 60%);
+  animation: sparkle 8s linear infinite;
+}
+
+/* ========== HEADINGS ========== */
+h1 {
   text-align: center;
+  margin-bottom: 22px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
+h2 {
+  margin: 22px 0 10px;
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+/* ========== FORM ========== */
 .form {
-  display: grid;
-  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-input, select, button {
-  padding: 10px;
-  font-size: 14px;
-}
-
-button {
-  background: #4a6cf7;
+input,
+select {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 12px 14px;
+  border-radius: 10px;
   color: #fff;
+  font-size: 14px;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+input::placeholder {
+  color: #cfcfcf;
+}
+
+input:focus,
+select:focus {
+  border-color: #6dd5fa;
+  box-shadow: 0 0 10px rgba(109,213,250,0.6);
+  background: rgba(255,255,255,0.18);
+}
+
+/* ========== BUTTONS ========== */
+button {
+  margin-top: 6px;
+  padding: 12px;
+  border-radius: 12px;
   border: none;
   cursor: pointer;
-  border-radius: 5px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  background: linear-gradient(135deg, #36d1dc, #5b86e5);
+  color: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 button:hover {
-  background: #3b5be0;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(91,134,229,0.6);
 }
 
+button:active {
+  transform: scale(0.98);
+}
+
+/* ========== STUDY PLAN LIST ========== */
 ul {
   list-style: none;
-  padding: 0;
+  margin-top: 10px;
 }
 
 li {
-  background: #eef1ff;
-  padding: 10px;
+  background: rgba(255,255,255,0.12);
   margin-bottom: 8px;
+  padding: 10px 12px;
+  border-radius: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: 5px;
+  animation: fadeIn 0.4s ease;
 }
 
+/* ========== PROGRESS BAR ========== */
 .progress-box {
   width: 100%;
-  height: 20px;
-  background: #ddd;
+  height: 16px;
+  background: rgba(255,255,255,0.15);
   border-radius: 10px;
   overflow: hidden;
+  margin-top: 6px;
 }
 
 #progressBar {
   height: 100%;
   width: 0%;
-  background: #4caf50;
-  transition: width 0.3s;
+  background: linear-gradient(90deg, #00f260, #0575e6);
+  transition: width 0.4s ease;
 }
 
+#progressText {
+  margin-top: 6px;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* ========== CLEAR BUTTON ========== */
 .clear {
-  margin-top: 15px;
-  background: crimson;
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  margin-top: 16px;
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes sparkle {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 480px) {
+  .container {
+    padding: 22px;
+  }
 }
