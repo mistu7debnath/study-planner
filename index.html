@@ -1,44 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Study Planner</title>
-  <link rel="stylesheet" href="style.css" />
-<script src="script.js"></script>
-
+  <meta charset="UTF-8">
+  <title>Smart Study Planner</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div class="container">
-    <h1>📘 Study Planner</h1>
+<div class="container">
+  <h1>📘 Smart Study Planner</h1>
 
-    <div class="form">
-      <input type="text" id="subject" placeholder="Subject Name" />
-      <input type="text" id="topic" placeholder="Topic Name" />
+  <div class="form">
+    <input type="text" id="subject" placeholder="Subject Name">
+    <input type="text" id="topic" placeholder="Topic Name">
 
-      <select id="difficulty">
-        <option value="">Difficulty</option>
-        <option value="3">Hard</option>
-        <option value="2">Medium</option>
-        <option value="1">Easy</option>
-      </select>
+    <select id="difficulty">
+      <option value="">Select Difficulty</option>
+      <option value="easy">Easy</option>
+      <option value="medium">Medium</option>
+      <option value="hard">Hard</option>
+    </select>
 
-      <input type="number" id="hours" placeholder="Study Hours" />
-      <button onclick="addTopic()">Add Topic</button>
-    </div>
-
-    <h2>📅 Today's Study Plan</h2>
-    <ul id="planList"></ul>
-
-    <h2>📊 Progress</h2>
-    <div class="progress-box">
-      <div id="progressBar"></div>
-    </div>
-    <p id="progressText">0% Completed</p>
-
-    <button class="clear" onclick="clearAll()">Clear Planner</button>
+    <button onclick="addTopic()">Generate Study Plan</button>
   </div>
 
-  <script src="script.js"></script>
+  <h2>📅 Recommended Study Plan</h2>
+  <ul id="planList"></ul>
+
+  <h2>📊 Progress</h2>
+  <div class="progress-box">
+    <div id="progressBar"></div>
+  </div>
+  <p id="progressText">0% Completed</p>
+
+  <button class="clear" onclick="clearAll()">Clear Planner</button>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
