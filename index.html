@@ -11,60 +11,55 @@
   <h1>📘 Smart Study Planner</h1>
 
   <div class="form">
-    
-<!-- Education Level -->
-<select id="educationType">
-  <option value="">Select Education Level</option>
-  <option value="school">School (Class 1–10)</option>
-  <option value="higher">Higher Secondary (11–12)</option>
-  <option value="college">College / University</option>
-  <option value="competitive">Competitive Exams</option>
-</select>
 
-<!-- Class / Standard -->
-<input type="text" id="subject" placeholder="Subject Name">
+    <!-- Subject -->
+    <input type="text" id="subject" placeholder="Subject Name">
 
-<input type="text" id="topic" placeholder="Topic Name">
+    <!-- Topic -->
+    <input type="text" id="topic" placeholder="Topic Name">
 
-<select id="difficulty">
-  <option value="" disabled selected>Select Difficulty</option>
-  <option value="easy">Easy</option>
-  <option value="medium">Medium</option>
-  <option value="hard">Hard</option>
-</select>
+    <!-- Difficulty -->
+    <select id="difficulty">
+      <option value="" disabled selected>Select Difficulty</option>
+      <option value="easy">Easy</option>
+      <option value="medium">Medium</option>
+      <option value="hard">Hard</option>
+    </select>
 
-<select id="educationType">
-  <option value="" disabled selected>Select Education</option>
-  <option value="school">School</option>
-  <option value="higher">Class 11–12</option>
-  <option value="college">College</option>
-  <option value="neet">NEET</option>
-  <option value="jee">JEE</option>
-  <option value="upsc">UPSC</option>
-</select>
+    <!-- Education Type -->
+    <select id="educationType">
+      <option value="" disabled selected>Select Education</option>
+      <option value="school">School (Class 1–10)</option>
+      <option value="higher">Higher Secondary (11–12)</option>
+      <option value="college">College / University</option>
+      <option value="neet">NEET</option>
+      <option value="jee">JEE</option>
+      <option value="upsc">UPSC</option>
+    </select>
 
-<select id="standard">
-  <option value="" disabled selected>Select Class / Level</option>
-  <option value="1">Class 1</option>
-  <option value="2">Class 2</option>
-  <option value="3">Class 3</option>
-  <option value="4">Class 4</option>
-  <option value="5">Class 5</option>
-  <option value="6">Class 6</option>
-  <option value="7">Class 7</option>
-  <option value="8">Class 8</option>
-  <option value="9">Class 9</option>
-  <option value="10">Class 10</option>
-  <option value="11">Class 11</option>
-  <option value="12">Class 12</option>
-  <option value="college">College Level</option>
-</select>
+    <!-- Class / Standard -->
+    <select id="standard">
+      <option value="" disabled selected>Select Class / Level</option>
+      <option value="1">Class 1</option>
+      <option value="2">Class 2</option>
+      <option value="3">Class 3</option>
+      <option value="4">Class 4</option>
+      <option value="5">Class 5</option>
+      <option value="6">Class 6</option>
+      <option value="7">Class 7</option>
+      <option value="8">Class 8</option>
+      <option value="9">Class 9</option>
+      <option value="10">Class 10</option>
+      <option value="11">Class 11</option>
+      <option value="12">Class 12</option>
+      <option value="college">College Level</option>
+    </select>
 
-  </select>
+    <!-- Button -->
+    <button type="button" onclick="addTopic()">
+      Generate Study Plan
+    </button>
 
-
-
-    <button onclick="addTopic()">Generate Study Plan</button>
   </div>
 
   <h2>📅 Recommended Study Plan</h2>
@@ -76,7 +71,9 @@
   </div>
   <p id="progressText">0% Completed</p>
 
-  <button class="clear" onclick="clearAll()">Clear Planner</button>
+  <button class="clear" type="button" onclick="clearAll()">
+    Clear Planner
+  </button>
 </div>
 
 <script src="script.js"></script>
