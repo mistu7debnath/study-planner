@@ -13,10 +13,18 @@
   <div class="form">
 
     <!-- Subject -->
-    <input type="text" id="subject" placeholder="Subject Name">
+    <input
+      type="text"
+      id="subject"
+      placeholder="Subject Name"
+    />
 
     <!-- Topic -->
-    <input type="text" id="topic" placeholder="Topic Name">
+    <input
+      type="text"
+      id="topic"
+      placeholder="Topic Name"
+    />
 
     <!-- Difficulty -->
     <select id="difficulty">
@@ -26,9 +34,9 @@
       <option value="hard">Hard</option>
     </select>
 
-    <!-- Education Type -->
+    <!-- Education / Exam Type -->
     <select id="educationType">
-      <option value="" disabled selected>Select Education</option>
+      <option value="" disabled selected>Select Education / Exam</option>
       <option value="school">School (Class 1–10)</option>
       <option value="higher">Higher Secondary (11–12)</option>
       <option value="college">College / University</option>
@@ -52,16 +60,16 @@
       <option value="10">Class 10</option>
       <option value="11">Class 11</option>
       <option value="12">Class 12</option>
-      <option value="college">College Level</option>
     </select>
 
-    <!-- Button -->
+    <!-- Generate Button -->
     <button type="button" onclick="addTopic()">
       Generate Study Plan
     </button>
 
   </div>
 
+  <!-- Output -->
   <h2>📅 Recommended Study Plan</h2>
   <ul id="planList"></ul>
 
@@ -71,6 +79,7 @@
   </div>
   <p id="progressText">0% Completed</p>
 
+  <!-- Clear -->
   <button class="clear" type="button" onclick="clearAll()">
     Clear Planner
   </button>

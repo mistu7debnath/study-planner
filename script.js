@@ -36,7 +36,7 @@ function getMultiplier(education, standard) {
 
 /* ================== ADD TOPIC ================== */
 function addTopic() {
-    console.log("Generate button clicked");
+    console.log(subject, topic, difficulty, education, standard);
 
 
   const subject = document.getElementById("subject").value.trim();
