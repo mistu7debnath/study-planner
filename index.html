@@ -11,16 +11,7 @@
   <h1>📘 Smart Study Planner</h1>
 
   <div class="form">
-    <input type="text" id="subject" placeholder="Subject Name">
-    <input type="text" id="topic" placeholder="Topic Name">
-
-    <select id="difficulty">
-      <option value="">Select Difficulty</option>
-      <option value="easy">Easy</option>
-      <option value="medium">Medium</option>
-      <option value="hard">Hard</option>
-    </select>
-
+    
 <!-- Education Level -->
 <select id="educationType">
   <option value="">Select Education Level</option>
@@ -31,8 +22,29 @@
 </select>
 
 <!-- Class / Standard -->
+<input type="text" id="subject" placeholder="Subject Name">
+
+<input type="text" id="topic" placeholder="Topic Name">
+
+<select id="difficulty">
+  <option value="" disabled selected>Select Difficulty</option>
+  <option value="easy">Easy</option>
+  <option value="medium">Medium</option>
+  <option value="hard">Hard</option>
+</select>
+
+<select id="educationType">
+  <option value="" disabled selected>Select Education</option>
+  <option value="school">School</option>
+  <option value="higher">Class 11–12</option>
+  <option value="college">College</option>
+  <option value="neet">NEET</option>
+  <option value="jee">JEE</option>
+  <option value="upsc">UPSC</option>
+</select>
+
 <select id="standard">
-  <option value="">Select Class / Level</option>
+  <option value="" disabled selected>Select Class / Level</option>
   <option value="1">Class 1</option>
   <option value="2">Class 2</option>
   <option value="3">Class 3</option>
@@ -46,11 +58,7 @@
   <option value="11">Class 11</option>
   <option value="12">Class 12</option>
   <option value="college">College Level</option>
-  <option value="college">University Level</option>
-  
-  <option value="neet">NEET</option>
-  <option value="jee">JEE</option>
-  <option value="upsc">UPSC</option>
+</select>
 
   </select>
 
