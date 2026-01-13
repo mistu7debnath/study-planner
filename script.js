@@ -1,7 +1,8 @@
+/* ================== DATA ================== */
 let studyData = JSON.parse(localStorage.getItem("studyData")) || [];
 
-/* Difficulty → Study Hours */
-function calculateHours(difficulty) {
+/* ================== BASE HOURS ================== */
+function getBaseHours(difficulty) {
   switch (difficulty) {
     case "easy": return 1.5;
     case "medium": return 2.5;
@@ -10,24 +11,53 @@ function calculateHours(difficulty) {
   }
 }
 
-/* Add topic */
+/* ================== MULTIPLIER ================== */
+function getMultiplier(education, standard) {
+  // School
+  if (education === "school") {
+    if (standard <= 5) return 1.0;
+    if (standard <= 8) return 1.2;
+    if (standard <= 10) return 1.6;
+  }
+
+  // Higher secondary
+  if (education === "higher") return 1.8;
+
+  // College
+  if (education === "college") return 1.4;
+
+  // Competitive exams
+  if (education === "neet") return 2.2;
+  if (education === "jee") return 2.3;
+  if (education === "upsc") return 2.8;
+
+  return 1.0;
+}
+
+/* ================== ADD TOPIC ================== */
 function addTopic() {
   const subject = document.getElementById("subject").value.trim();
   const topic = document.getElementById("topic").value.trim();
   const difficulty = document.getElementById("difficulty").value;
+  const education = document.getElementById("educationType").value;
+  const standard = document.getElementById("standard").value;
 
-  if (subject === "" || topic === "" || difficulty === "") {
-    alert("Please fill all fields properly");
+  if (!subject || !topic || !difficulty || !education || !standard) {
+    alert("Please fill all fields");
     return;
   }
 
-  const hours = calculateHours(difficulty);
+  const baseHours = getBaseHours(difficulty);
+  const multiplier = getMultiplier(education, Number(standard));
+  const finalHours = Number((baseHours * multiplier).toFixed(1));
 
   studyData.push({
     subject,
     topic,
     difficulty,
-    hours,
+    education,
+    standard,
+    hours: finalHours,
     completed: false
   });
 
@@ -35,26 +65,7 @@ function addTopic() {
   clearInputs();
 }
 
-userProfile = {
-  educationType: "school",
-  level: "10",
-  multiplier: 1.6,
-  dailyAvailableHours: 6,
-  days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-};
-
-
-studyTopic = {
-  subject: "Math",
-  topic: "Trigonometry",
-  difficulty: "hard",
-  baseHours: 4,
-  finalHours: 6.4,
-  completed: false
-};
-
-
-/* Render study plan */
+/* ================== RENDER PLAN ================== */
 function renderPlan() {
   const list = document.getElementById("planList");
   list.innerHTML = "";
@@ -65,9 +76,14 @@ function renderPlan() {
     li.innerHTML = `
       <span>
         <strong>${item.subject}</strong> – ${item.topic}<br>
-        <small>Difficulty: ${item.difficulty.toUpperCase()} | ⏱ ${item.hours} hrs</small>
+        <small>
+          ${item.education.toUpperCase()} |
+          Difficulty: ${item.difficulty.toUpperCase()} |
+          ⏱ ${item.hours} hrs
+        </small>
       </span>
-      <input type="checkbox" ${item.completed ? "checked" : ""} 
+      <input type="checkbox"
+        ${item.completed ? "checked" : ""}
         onchange="toggleComplete(${index})">
     `;
 
@@ -77,68 +93,15 @@ function renderPlan() {
   updateProgress();
 }
 
-function getBaseHours(difficulty) {
-  if (difficulty === "easy") return 1.5;
-  if (difficulty === "medium") return 2.5;
-  if (difficulty === "hard") return 4;
-}
-
-function getMultiplier(type, level) {
-  if (type === "school" && level <= 5) return 1.0;
-  if (type === "school" && level <= 8) return 1.2;
-  if (type === "school" && level <= 10) return 1.6;
-  if (type === "higher_secondary") return 1.8;
-  if (type === "university") return 1.4;
-  if (type === "competitive") return 2.0;
-}
-
-finalHours = baseHours * multiplier;
-
-breaks = [
-  { name: "Breakfast", duration: 0.5 },
-  { name: "Lunch", duration: 1 },
-  { name: "Dinner", duration: 1 },
-  { name: "Short Breaks", duration: 0.5 }
-];
-
-function generateWeeklyPlan(topics, profile) {
-  let plan = {};
-  let remainingTopics = [...topics];
-
-  profile.days.forEach(day => {
-    let available = profile.dailyAvailableHours - 3; // meals
-    plan[day] = [];
-
-    while (available > 0 && remainingTopics.length > 0) {
-      let topic = remainingTopics[0];
-      let studyTime = Math.min(topic.finalHours, available);
-
-      plan[day].push({
-        subject: topic.subject,
-        topic: topic.topic,
-        hours: studyTime
-      });
-
-      topic.finalHours -= studyTime;
-      available -= studyTime;
-
-      if (topic.finalHours <= 0) remainingTopics.shift();
-    }
-  });
-
-  return plan;
-}
-
-
-/* Toggle completion */
+/* ================== TOGGLE COMPLETE ================== */
 function toggleComplete(index) {
   studyData[index].completed = !studyData[index].completed;
   saveAndRender();
 }
 
-/* Progress calculation */
+/* ================== PROGRESS ================== */
 function updateProgress() {
-  const completed = studyData.filter(item => item.completed).length;
+  const completed = studyData.filter(t => t.completed).length;
   const total = studyData.length;
   const percent = total === 0 ? 0 : Math.round((completed / total) * 100);
 
@@ -146,12 +109,13 @@ function updateProgress() {
   document.getElementById("progressText").innerText = `${percent}% Completed`;
 }
 
-/* Helpers */
+/* ================== STORAGE ================== */
 function saveAndRender() {
   localStorage.setItem("studyData", JSON.stringify(studyData));
   renderPlan();
 }
 
+/* ================== HELPERS ================== */
 function clearInputs() {
   document.getElementById("subject").value = "";
   document.getElementById("topic").value = "";
@@ -165,5 +129,5 @@ function clearAll() {
   }
 }
 
-/* Initial load */
+/* ================== INIT ================== */
 renderPlan();
