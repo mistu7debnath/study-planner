@@ -1,136 +1,105 @@
-/* ================== DATA ================== */
-let studyData = JSON.parse(localStorage.getItem("studyData")) || [];
+let studyData = [];
 
-/* ================== BASE HOURS ================== */
+/* Base hours by difficulty */
 function getBaseHours(difficulty) {
-  switch (difficulty) {
-    case "easy": return 1.5;
-    case "medium": return 2.5;
-    case "hard": return 4;
-    default: return 0;
-  }
+  if (difficulty === "easy") return 1.5;
+  if (difficulty === "medium") return 2.5;
+  if (difficulty === "hard") return 4;
+  return 0;
 }
 
-/* ================== MULTIPLIER ================== */
+/* Multiplier by education */
 function getMultiplier(education, standard) {
-  // School
   if (education === "school") {
     if (standard <= 5) return 1.0;
     if (standard <= 8) return 1.2;
-    if (standard <= 10) return 1.6;
+    return 1.6;
   }
-
-  // Higher secondary
   if (education === "higher") return 1.8;
-
-  // College
   if (education === "college") return 1.4;
-
-  // Competitive exams
   if (education === "neet") return 2.2;
   if (education === "jee") return 2.3;
   if (education === "upsc") return 2.8;
-
   return 1.0;
 }
 
-/* ================== ADD TOPIC ================== */
+/* Main function */
 function addTopic() {
-    console.log(subject, topic, difficulty, education, standard);
-
-
   const subject = document.getElementById("subject").value.trim();
   const topic = document.getElementById("topic").value.trim();
   const difficulty = document.getElementById("difficulty").value;
   const education = document.getElementById("educationType").value;
-  const standard = document.getElementById("standard").value;
+  const standard = Number(document.getElementById("standard").value);
+
+  console.log(subject, topic, difficulty, education, standard);
 
   if (!subject || !topic || !difficulty || !education || !standard) {
     alert("Please fill all fields");
     return;
   }
 
-  const baseHours = getBaseHours(difficulty);
-  const multiplier = getMultiplier(education, Number(standard));
-  const finalHours = Number((baseHours * multiplier).toFixed(1));
+  const hours =
+    getBaseHours(difficulty) *
+    getMultiplier(education, standard);
 
   studyData.push({
     subject,
     topic,
     difficulty,
-    education,
-    standard,
-    hours: finalHours,
+    hours: hours.toFixed(1),
     completed: false
   });
 
-  saveAndRender();
+  renderPlan();
   clearInputs();
 }
 
-/* ================== RENDER PLAN ================== */
+/* Render list */
 function renderPlan() {
   const list = document.getElementById("planList");
   list.innerHTML = "";
 
   studyData.forEach((item, index) => {
     const li = document.createElement("li");
-
     li.innerHTML = `
-      <span>
-        <strong>${item.subject}</strong> – ${item.topic}<br>
-        <small>
-          ${item.education.toUpperCase()} |
-          Difficulty: ${item.difficulty.toUpperCase()} |
-          ⏱ ${item.hours} hrs
-        </small>
-      </span>
-      <input type="checkbox"
-        ${item.completed ? "checked" : ""}
-        onchange="toggleComplete(${index})">
+      <strong>${item.subject}</strong> – ${item.topic}<br>
+      <small>
+        Difficulty: ${item.difficulty.toUpperCase()} |
+        ⏱ ${item.hours} hrs
+      </small>
+      <input type="checkbox" onchange="toggleComplete(${index})">
     `;
-
     list.appendChild(li);
   });
 
   updateProgress();
 }
 
-/* ================== TOGGLE COMPLETE ================== */
+/* Progress */
 function toggleComplete(index) {
   studyData[index].completed = !studyData[index].completed;
-  saveAndRender();
+  updateProgress();
 }
 
-/* ================== PROGRESS ================== */
 function updateProgress() {
-  const completed = studyData.filter(t => t.completed).length;
+  const done = studyData.filter(t => t.completed).length;
   const total = studyData.length;
-  const percent = total === 0 ? 0 : Math.round((completed / total) * 100);
+  const percent = total === 0 ? 0 : Math.round((done / total) * 100);
 
   document.getElementById("progressBar").style.width = percent + "%";
-  document.getElementById("progressText").innerText = `${percent}% Completed`;
+  document.getElementById("progressText").innerText = percent + "% Completed";
 }
 
-/* ================== STORAGE ================== */
-function saveAndRender() {
-  localStorage.setItem("studyData", JSON.stringify(studyData));
-  renderPlan();
-}
-
-/* ================== HELPERS ================== */
+/* Helpers */
 function clearInputs() {
   document.getElementById("subject").value = "";
   document.getElementById("topic").value = "";
   document.getElementById("difficulty").value = "";
+  document.getElementById("educationType").value = "";
+  document.getElementById("standard").value = "";
 }
 
 function clearAll() {
-  if (confirm("Clear entire study planner?")) {
-    studyData = [];
-    saveAndRender();
-  }
+  studyData = [];
+  renderPlan();
 }
-
-/* ================== INIT ================== */
-renderPlan();
