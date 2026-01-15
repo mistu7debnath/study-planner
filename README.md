@@ -2,3 +2,19 @@
 
 A smart, rule-based study planning web application that helps students create a personalized daily study timetable based on their subjects, difficulty level, education stage, and class/standard.
 It also generates a printable tabular routine and tracks study progress.
+
+
+
+
+
+
+
+burnout
+
+📊 Progress Tracking
+
+Mark completed topics
+
+Visual progress bar
+
+Percentage-based completion tracking
