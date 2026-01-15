@@ -9,7 +9,6 @@ It also generates a printable tabular routine and tracks study progress.
 
 
 
-burnout
 
 📊 Progress Tracking
 
