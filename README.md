@@ -13,6 +13,5 @@ It also generates a printable tabular routine and tracks study progress.
 📊 Progress Tracking
 
 Mark completed topics
-
 Visual progress bar
 Percentage-based completion tracking
