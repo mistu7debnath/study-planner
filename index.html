@@ -9,20 +9,9 @@
 
 <div class="container">
   <h1>📘 Smart Study Planner</h1>
-  <div id="routine" style="
-  background: rgba(255,255,255,0.12);
-  padding: 15px;
-  border-radius: 12px;
-  margin-bottom: 20px;
-">
-  <!-- Routine will be generated here -->
-</div>
-
 
   <div class="form">
-
     <input type="text" id="subject" placeholder="Subject Name">
-
     <input type="text" id="topic" placeholder="Topic Name">
 
     <select id="difficulty">
@@ -58,14 +47,19 @@
       <option value="12">Class 12</option>
     </select>
 
-    <button type="button" onclick="addTopic()">
-      Generate Study Plan
-    </button>
-
+    <button type="button" onclick="addTopic()">Generate Study Plan</button>
   </div>
 
   <h2>📅 Recommended Study Plan</h2>
   <ul id="planList"></ul>
+
+  <h2>🗓️ Weekly Study Routine</h2>
+  <div id="routine" class="routine-box"></div>
+
+  <div style="display:flex; gap:10px; margin:15px 0;">
+    <button type="button" onclick="downloadJSON()">Download JSON</button>
+    <button type="button" onclick="downloadPDF()">Download PDF</button>
+  </div>
 
   <h2>📊 Progress</h2>
   <div class="progress-box">
@@ -73,10 +67,7 @@
   </div>
   <p id="progressText">0% Completed</p>
 
-  <button class="clear" type="button" onclick="clearAll()">
-    Clear Planner
-  </button>
-
+  <button class="clear" type="button" onclick="clearAll()">Clear Planner</button>
 </div>
 
 <script src="script.js"></script>
