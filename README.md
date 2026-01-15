@@ -10,7 +10,7 @@ It also generates a printable tabular routine and tracks study progress.
 
 
 
-📊 Progress Tracking
+📊 Progress Tracking:
 
 Mark completed topics
 Visual progress bar
