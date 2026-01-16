@@ -10,6 +10,7 @@
 <div class="container">
   <h1>📘 Smart Study Planner</h1>
 
+  <!-- INPUT FORM -->
   <div class="form">
     <input type="text" id="subject" placeholder="Subject Name">
     <input type="text" id="topic" placeholder="Topic Name">
@@ -48,44 +49,44 @@
     </select>
 
     <select id="routineType">
-  <option value="" disabled selected>Select Routine Type</option>
-  <option value="early">🌅 Early Bird</option>
-  <option value="normal">🕘 Normal</option>
-  <option value="night">🌙 Night Owl</option>
-</select>
-
+      <option value="" disabled selected>Select Routine Type</option>
+      <option value="early">🌅 Early Bird</option>
+      <option value="normal">🕘 Normal</option>
+      <option value="night">🌙 Night Owl</option>
+    </select>
 
     <button type="button" onclick="addTopic()">Generate Study Plan</button>
   </div>
 
+  <!-- RECOMMENDED PLAN -->
   <h2>📅 Recommended Study Plan</h2>
   <ul id="planList"></ul>
 
+  <!-- WEEKLY ROUTINE -->
   <h2>🗓️ Weekly Study Routine</h2>
-  <div id="routine" class="routine-box"></div>
+  <div id="weeklyRoutine" class="routine-box"></div>
 
   <div style="display:flex; gap:10px; margin:15px 0;">
     <button type="button" onclick="downloadJSON()">Download JSON</button>
     <button type="button" onclick="downloadPDF()">Download PDF</button>
   </div>
 
+  <!-- DAILY TIMETABLE -->
   <h2><b>🕒 Daily Study Timetable</b></h2>
 
-<table id="routineTable"
-  style="width:100%; border-collapse:collapse; margin-bottom:20px;"
-  border="1">
-  <thead>
-    <tr>
-      <th><b>Time</b></th>
-      <th><b>Activity</b></th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table>
+  <table id="routineTable"
+    style="width:100%; border-collapse:collapse; margin-bottom:20px;"
+    border="1">
+    <thead>
+      <tr>
+        <th><b>Time</b></th>
+        <th><b>Activity</b></th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
 
-<button onclick="downloadRoutinePDF()">Download Timetable PDF</button>
-
-
+  <!-- PROGRESS -->
   <h2>📊 Progress</h2>
   <div class="progress-box">
     <div id="progressBar"></div>
