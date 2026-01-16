@@ -177,36 +177,56 @@ function generateDailyTimetable() {
 /***********************
   WEEKLY TIMETABLE
 ************************/
-function generateWeeklyTimetable() {
-  weeklyRoutine.innerHTML = "";
+function generateWeeklyTable() {
+  const tbody = document.querySelector("#weeklyTable tbody");
+  tbody.innerHTML = "";
+
   if (studyData.length === 0) return;
+
+  const routineType = document.getElementById("routineType").value;
+  if (!routineType) return;
+
+  const { start, end } = getRoutineTime(routineType);
 
   const days = [
     "Monday","Tuesday","Wednesday",
     "Thursday","Friday","Saturday","Sunday"
   ];
 
-  let index = 0;
+  let topicIndex = 0;
 
   days.forEach(day => {
-    const block = document.createElement("div");
-    block.className = "week-block";
+    for (let hour = start; hour < end; hour++) {
+      let activity = "";
 
-    let html = `<h3>${day}</h3><ul>`;
+      // Meals
+      if (hour === 8) activity = "🍳 Breakfast";
+      else if (hour === 13) activity = "🍽 Lunch";
+      else if (hour === 20) activity = "🍲 Dinner";
 
-    for (let i = 0; i < 3; i++) {
-      const t = studyData[index % studyData.length];
-      html += `<li>📘 ${t.subject} – ${t.topic}</li>`;
-      index++;
+      // School / College ONLY for non-competitive students
+      else if (
+        ["school","higher","college"].includes(educationInput().value) &&
+        hour >= 10 && hour < 16
+      ) {
+        activity = "🏫 School / College";
+      }
+
+      // Study slot
+      else {
+        const t = studyData[topicIndex % studyData.length];
+        activity = `📘 ${t.subject} – ${t.topic}`;
+        topicIndex++;
+      }
+
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td><b>${day}</b></td>
+        <td>${formatTime(hour)} – ${formatTime(hour + 1)}</td>
+        <td>${activity}</td>
+      `;
+      tbody.appendChild(row);
     }
-
-    if (day === "Sunday") {
-      html += `<li>🔁 Revision & Light Study</li>`;
-    }
-
-    html += "</ul>";
-    block.innerHTML = html;
-    weeklyRoutine.appendChild(block);
   });
 }
 
