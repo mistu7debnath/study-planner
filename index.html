@@ -24,7 +24,7 @@
 
     <select id="educationType">
       <option value="" disabled selected>Select Education</option>
-      <option value="school">School</option>
+      <option value="school">School (Class 1–10)</option>
       <option value="higher">Class 11–12</option>
       <option value="college">College</option>
       <option value="neet">NEET</option>
@@ -34,8 +34,9 @@
       <option value="upsc">UPSC</option>
     </select>
 
+    <!-- Class (only needed for school / higher) -->
     <select id="standard">
-      <option value="" disabled selected>Select Class</option>
+      <option value="">Select Class (Optional for Competitive)</option>
       <option value="1">Class 1</option>
       <option value="2">Class 2</option>
       <option value="3">Class 3</option>
@@ -64,45 +65,32 @@
   <h2>📅 Recommended Study Plan</h2>
   <ul id="planList"></ul>
 
-  <!-- WEEKLY ROUTINE -->
-<!-- EVERYTHING TO EXPORT AS PDF -->
-<div id="pdfContent">
+  <!-- EVERYTHING BELOW IS EXPORTABLE -->
+  <div id="pdfContent">
 
-  <h2>🗓️ Weekly Study Routine</h2>
-  <div id="weeklyRoutine"></div>
+    <!-- WEEKLY ROUTINE -->
+    <h2>🗓️ Weekly Study Routine</h2>
+    <div id="weeklyRoutine"></div>
 
-  <h2>🕒 Daily Study Timetable</h2>
-  <table id="routineTable" border="1" width="100%">
-    <thead>
-      <tr>
-        <th>Time</th>
-        <th>Activity</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+    <!-- DAILY TIMETABLE -->
+    <h2>🕒 Daily Study Timetable</h2>
 
-</div>
+    <table id="routineTable"
+      style="width:100%; border-collapse:collapse; margin-bottom:20px;"
+      border="1">
+      <thead>
+        <tr>
+          <th><b>Time</b></th>
+          <th><b>Activity</b></th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
 
-<button onclick="downloadPDF()">Download PDF</button>
+  </div>
 
-  <!-- DAILY TIMETABLE -->
-  <h2><b>🕒 Daily Study Timetable</b></h2>
-
-  <table id="routineTable1"
-    style="width:100%; border-collapse:collapse; margin-bottom:20px;"
-    border="1">
-    <thead>
-      <tr>
-        <th><b>Time</b></th>
-        <th><b>Activity</b></th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
-
-
-<button onclick="downloadPDF()">Download PDF</button>
+  <!-- DOWNLOAD -->
+  <button onclick="downloadPDF()">Download PDF</button>
 
   <!-- PROGRESS -->
   <h2>📊 Progress</h2>
