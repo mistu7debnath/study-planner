@@ -34,7 +34,7 @@
       <option value="upsc">UPSC</option>
     </select>
 
-    <!-- Class (only needed for school / higher) -->
+    <!-- Class is optional for competitive exams -->
     <select id="standard">
       <option value="">Select Class (Optional for Competitive)</option>
       <option value="1">Class 1</option>
@@ -61,58 +61,40 @@
     <button type="button" onclick="addTopic()">Generate Study Plan</button>
   </div>
 
-  <!-- RECOMMENDED PLAN -->
+  <!-- RECOMMENDED STUDY PLAN -->
   <h2>📅 Recommended Study Plan</h2>
   <ul id="planList"></ul>
 
-  <!-- EVERYTHING BELOW IS EXPORTABLE -->
+  <!-- ================= PDF CONTENT START ================= -->
   <div id="pdfContent">
 
-  <h2>📅 Weekly Study Timetable</h2>
-
-  <table id="weeklyTable" border="1" style="width:100%; border-collapse:collapse;">
-    <thead>
-      <tr>
-        <th>Day</th>
-        <th>Time</th>
-        <th>Activity</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
-
-  <h2>🕒 Daily Study Timetable</h2>
-
-  <table id="routineTable1" border="1" style="width:100%; border-collapse:collapse;">
-    <thead>
-      <tr>
-        <th>Time</th>
-        <th>Activity</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
-
-</div>
-
-
-
-    <!-- DAILY TIMETABLE -->
-    <h2>🕒 Daily Study Timetable</h2>
-
-    <table id="routineTable"
-      style="width:100%; border-collapse:collapse; margin-bottom:20px;"
-      border="1">
+    <!-- WEEKLY TABLE -->
+    <h2>📅 Weekly Study Timetable</h2>
+    <table id="weeklyTable" border="1" style="width:100%; border-collapse:collapse;">
       <thead>
         <tr>
-          <th><b>Time</b></th>
-          <th><b>Activity</b></th>
+          <th>Day</th>
+          <th>Time</th>
+          <th>Activity</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <!-- DAILY TABLE -->
+    <h2>🕒 Daily Study Timetable</h2>
+    <table id="routineTable1" border="1" style="width:100%; border-collapse:collapse;">
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Activity</th>
         </tr>
       </thead>
       <tbody></tbody>
     </table>
 
   </div>
+  <!-- ================= PDF CONTENT END ================= -->
 
   <!-- DOWNLOAD -->
   <button onclick="downloadPDF()">Download PDF</button>
@@ -125,6 +107,8 @@
   <p id="progressText">0% Completed</p>
 
   <button class="clear" type="button" onclick="clearAll()">Clear Planner</button>
+
+</div>
 
 <script src="script.js"></script>
 </body>
