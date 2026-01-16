@@ -7,8 +7,8 @@ let studyData = [];
   BASE HOURS
 ************************/
 function getBaseHours(difficulty) {
-  if (difficulty === "easy") return 1.5;
-  if (difficulty === "medium") return 2.5;
+  if (difficulty === "easy") return 2;
+  if (difficulty === "medium") return 3;
   if (difficulty === "hard") return 4;
   return 0;
 }
@@ -18,7 +18,7 @@ function getBaseHours(difficulty) {
 ************************/
 function getMultiplier(education, standard) {
   if (education === "school") {
-    if (standard <= 6) return 1.0;
+    if (standard <= 6) return 1;
     if (standard <= 8) return 1.2;
     return 1.6;
   }
@@ -27,7 +27,17 @@ function getMultiplier(education, standard) {
   if (education === "neet") return 2.2;
   if (education === "jee") return 2.3;
   if (education === "upsc") return 2.8;
-  return 1.0;
+  return 1;
+}
+
+/***********************
+  ROUTINE TIME WINDOW
+************************/
+function getRoutineTime(type) {
+  if (type === "early") return { start: 5, end: 21 };
+  if (type === "normal") return { start: 7, end: 23 };
+  if (type === "night") return { start: 10, end: 25 };
+  return { start: 7, end: 23 };
 }
 
 /***********************
@@ -39,8 +49,9 @@ function addTopic() {
   const difficulty = difficultyInput().value;
   const education = educationInput().value;
   const standard = Number(standardInput().value);
+  const routineType = document.getElementById("routineType").value;
 
-  if (!subject || !topic || !difficulty || !education || !standard) {
+  if (!subject || !topic || !difficulty || !education || !standard || !routineType) {
     alert("Please fill all fields");
     return;
   }
@@ -52,20 +63,17 @@ function addTopic() {
   studyData.push({
     subject,
     topic,
-    difficulty,
-    education,
-    standard,
-    hours: Math.round(hours), // 🔑 NO FLOATING
+    hours: Math.round(hours),
     completed: false
   });
 
   renderPlan();
-  generateDailyTable();
+  generateWeeklyTimetable();
   clearInputs();
 }
 
 /***********************
-  RENDER STUDY PLAN
+  STUDY PLAN LIST
 ************************/
 function renderPlan() {
   planList.innerHTML = "";
@@ -73,11 +81,8 @@ function renderPlan() {
   studyData.forEach((item, index) => {
     const li = document.createElement("li");
     li.innerHTML = `
-      <strong>${item.subject}</strong> – ${item.topic}<br>
-      <small>
-        Difficulty: ${item.difficulty.toUpperCase()} |
-        ⏱ ${item.hours} hrs
-      </small>
+      <strong>${item.subject}</strong> – ${item.topic}
+      <small> ⏱ ${item.hours} hrs</small>
       <input type="checkbox" onchange="toggleComplete(${index})">
     `;
     planList.appendChild(li);
@@ -109,94 +114,79 @@ function updateProgress() {
 ************************/
 function formatTime(hour) {
   let h = hour % 12 || 12;
-  let ampm = hour >= 12 ? "PM" : "AM";
+  let ampm = hour >= 12 && hour < 24 ? "PM" : "AM";
   return `${h}:00 ${ampm}`;
 }
 
 /***********************
-  TABULAR DAILY ROUTINE (NORMAL)
+  WEEKLY TIMETABLE
 ************************/
-function generateDailyTable() {
-  const tbody = document.querySelector("#routineTable tbody");
-  tbody.innerHTML = "";
+function generateWeeklyTimetable() {
+  const routineType = document.getElementById("routineType").value;
+  if (!routineType || studyData.length === 0) return;
 
-  if (studyData.length === 0) return;
+  weeklyRoutine.innerHTML = "";
 
-  let time = 7;     // 7 AM
-  let end = 23;     // 11 PM
-  let index = 0;
-
-  const fixedBlocks = [
-    { from: 8, to: 9, label: "🍳 Breakfast" },
-    { from: 10, to: 16, label: "🏫 School / College" },
-    { from: 13, to: 14, label: "🍽 Lunch" },
-    { from: 20, to: 21, label: "🍲 Dinner" }
+  const days = [
+    "Monday","Tuesday","Wednesday",
+    "Thursday","Friday","Saturday","Sunday"
   ];
 
-  while (time < end) {
-    let block = fixedBlocks.find(b => time >= b.from && time < b.to);
-    let activity = "";
+  const { start, end } = getRoutineTime(routineType);
+  let topicIndex = 0;
 
-    if (block) {
-      activity = block.label;
-    } else {
-      const topic = studyData[index % studyData.length];
-      activity = `📘 ${topic.subject} – ${topic.topic}`;
-      index++;
+  days.forEach(day => {
+    const table = document.createElement("table");
+    table.border = "1";
+    table.style.width = "100%";
+    table.style.borderCollapse = "collapse";
+    table.style.marginBottom = "20px";
+
+    table.innerHTML = `
+      <thead>
+        <tr>
+          <th colspan="2"><b>${day}</b></th>
+        </tr>
+        <tr>
+          <th>Time</th>
+          <th>Activity</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    `;
+
+    const tbody = table.querySelector("tbody");
+    let time = start;
+
+    while (time < end) {
+      let activity = "";
+
+      if (time === 8) activity = "🍳 Breakfast";
+      else if (time >= 10 && time < 16) activity = "🏫 School / College";
+      else if (time === 13) activity = "🍽 Lunch";
+      else if (time === 20) activity = "🍲 Dinner";
+      else {
+        const topic = studyData[topicIndex % studyData.length];
+        activity = `📘 ${topic.subject} – ${topic.topic}`;
+        topicIndex++;
+      }
+
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td><b>${formatTime(time)} – ${formatTime(time + 1)}</b></td>
+        <td>${activity}</td>
+      `;
+      tbody.appendChild(row);
+
+      time++;
     }
 
-    const row = document.createElement("tr");
-    row.innerHTML = `
-      <td><b>${formatTime(time)} – ${formatTime(time + 1)}</b></td>
-      <td>${activity}</td>
-    `;
-    tbody.appendChild(row);
-
-    time++;
-  }
+    weeklyRoutine.appendChild(table);
+  });
 }
 
 /***********************
-  PDF EXPORT (TABLE)
-************************/
-function downloadRoutinePDF() {
-  const tableHTML = document.getElementById("routineTable").outerHTML;
-
-  const win = window.open("", "", "width=900,height=700");
-  win.document.write(`
-    <html>
-      <head>
-        <title>Daily Study Timetable</title>
-        <style>
-          body { font-family: Arial; padding: 20px; }
-          h1 { text-align: center; }
-          table {
-            width: 100%;
-            border-collapse: collapse;
-          }
-          th, td {
-            border: 1px solid black;
-            padding: 8px;
-          }
-          th {
-            background: #f2f2f2;
-            font-weight: bold;
-          }
-        </style>
-      </head>
-      <body>
-        <h1><b>Daily Study Timetable</b></h1>
-        ${tableHTML}
-      </body>
-    </html>
-  `);
-
-  win.document.close();
-  win.print();
-}
-
-/***********************
-  HELPERS
+  CLEAR
 ************************/
 function clearInputs() {
   subjectInput().value = "";
@@ -208,8 +198,9 @@ function clearInputs() {
 
 function clearAll() {
   studyData = [];
-  renderPlan();
-  document.querySelector("#routineTable tbody").innerHTML = "";
+  planList.innerHTML = "";
+  weeklyRoutine.innerHTML = "";
+  updateProgress();
 }
 
 /***********************
@@ -222,5 +213,6 @@ const educationInput = () => document.getElementById("educationType");
 const standardInput = () => document.getElementById("standard");
 
 const planList = document.getElementById("planList");
+const weeklyRoutine = document.getElementById("weeklyRoutine");
 const progressBar = document.getElementById("progressBar");
 const progressText = document.getElementById("progressText");
