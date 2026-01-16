@@ -31,12 +31,12 @@ function getMultiplier(education, standard) {
 }
 
 /***********************
-  ROUTINE TIME WINDOW
+  ROUTINE TYPE
 ************************/
 function getRoutineTime(type) {
   if (type === "early") return { start: 5, end: 21 };
   if (type === "normal") return { start: 7, end: 23 };
-  if (type === "night") return { start: 10, end: 25 };
+  if (type === "night") return { start: 10, end: 24 };
   return { start: 7, end: 23 };
 }
 
@@ -56,18 +56,20 @@ function addTopic() {
     return;
   }
 
-  const hours =
+  const hours = Math.round(
     getBaseHours(difficulty) *
-    getMultiplier(education, standard);
+    getMultiplier(education, standard)
+  );
 
   studyData.push({
     subject,
     topic,
-    hours: Math.round(hours),
+    hours,
     completed: false
   });
 
   renderPlan();
+  generateDailyTimetable();
   generateWeeklyTimetable();
   clearInputs();
 }
@@ -114,74 +116,79 @@ function updateProgress() {
 ************************/
 function formatTime(hour) {
   let h = hour % 12 || 12;
-  let ampm = hour >= 12 && hour < 24 ? "PM" : "AM";
+  let ampm = hour >= 12 ? "PM" : "AM";
   return `${h}:00 ${ampm}`;
+}
+
+/***********************
+  DAILY TIMETABLE
+************************/
+function generateDailyTimetable() {
+  const routineType = document.getElementById("routineType").value;
+  const tbody = document.querySelector("#routineTable tbody");
+  tbody.innerHTML = "";
+
+  if (!routineType || studyData.length === 0) return;
+
+  const { start, end } = getRoutineTime(routineType);
+  let index = 0;
+
+  for (let hour = start; hour < end; hour++) {
+    let activity = "";
+
+    if (hour === 8) activity = "🍳 Breakfast";
+    else if (hour === 13) activity = "🍽 Lunch";
+    else if (hour === 20) activity = "🍲 Dinner";
+    else if (hour >= 10 && hour < 16)
+      activity = "🏫 School / College";
+    else {
+      const t = studyData[index % studyData.length];
+      activity = `📘 ${t.subject} – ${t.topic}`;
+      index++;
+    }
+
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td><b>${formatTime(hour)} – ${formatTime(hour + 1)}</b></td>
+      <td>${activity}</td>
+    `;
+    tbody.appendChild(row);
+  }
 }
 
 /***********************
   WEEKLY TIMETABLE
 ************************/
 function generateWeeklyTimetable() {
-  const routineType = document.getElementById("routineType").value;
-  if (!routineType || studyData.length === 0) return;
-
   weeklyRoutine.innerHTML = "";
+  if (studyData.length === 0) return;
 
   const days = [
     "Monday","Tuesday","Wednesday",
     "Thursday","Friday","Saturday","Sunday"
   ];
 
-  const { start, end } = getRoutineTime(routineType);
-  let topicIndex = 0;
+  let index = 0;
 
   days.forEach(day => {
-    const table = document.createElement("table");
-    table.border = "1";
-    table.style.width = "100%";
-    table.style.borderCollapse = "collapse";
-    table.style.marginBottom = "20px";
+    const block = document.createElement("div");
+    block.className = "week-block";
 
-    table.innerHTML = `
-      <thead>
-        <tr>
-          <th colspan="2"><b>${day}</b></th>
-        </tr>
-        <tr>
-          <th>Time</th>
-          <th>Activity</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    `;
+    let html = `<h3>${day}</h3><ul>`;
 
-    const tbody = table.querySelector("tbody");
-    let time = start;
-
-    while (time < end) {
-      let activity = "";
-
-      if (time === 8) activity = "🍳 Breakfast";
-      else if (time >= 10 && time < 16) activity = "🏫 School / College";
-      else if (time === 13) activity = "🍽 Lunch";
-      else if (time === 20) activity = "🍲 Dinner";
-      else {
-        const topic = studyData[topicIndex % studyData.length];
-        activity = `📘 ${topic.subject} – ${topic.topic}`;
-        topicIndex++;
-      }
-
-      const row = document.createElement("tr");
-      row.innerHTML = `
-        <td><b>${formatTime(time)} – ${formatTime(time + 1)}</b></td>
-        <td>${activity}</td>
-      `;
-      tbody.appendChild(row);
-
-      time++;
+    for (let i = 0; i < 3; i++) {
+      const t = studyData[index % studyData.length];
+      html += `<li>📘 ${t.subject} – ${t.topic}</li>`;
+      index++;
     }
 
-    weeklyRoutine.appendChild(table);
+    if (day === "Sunday") {
+      html += `<li>🔁 Revision & Light Study</li>`;
+    }
+
+    html += "</ul>";
+    block.innerHTML = html;
+    weeklyRoutine.appendChild(block);
   });
 }
 
@@ -200,6 +207,7 @@ function clearAll() {
   studyData = [];
   planList.innerHTML = "";
   weeklyRoutine.innerHTML = "";
+  document.querySelector("#routineTable tbody").innerHTML = "";
   updateProgress();
 }
 
