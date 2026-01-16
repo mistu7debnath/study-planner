@@ -51,10 +51,21 @@ function addTopic() {
   const standard = Number(standardInput().value);
   const routineType = document.getElementById("routineType").value;
 
-  if (!subject || !topic || !difficulty || !education || !standard || !routineType) {
-    alert("Please fill all fields");
-    return;
-  }
+  if (!subject || !topic || !difficulty || !education || !routineType) {
+  alert("Please fill all required fields");
+  return;
+}
+
+if (
+  (education === "school" ||
+   education === "higher" ||
+   education === "college") &&
+  !standard
+) {
+  alert("Please select class / standard");
+  return;
+}
+
 
   const hours = Math.round(
     getBaseHours(difficulty) *
@@ -139,8 +150,15 @@ function generateDailyTimetable() {
     if (hour === 8) activity = "🍳 Breakfast";
     else if (hour === 13) activity = "🍽 Lunch";
     else if (hour === 20) activity = "🍲 Dinner";
-    else if (hour >= 10 && hour < 16)
-      activity = "🏫 School / College";
+    else if (
+  (educationInput().value === "school" ||
+   educationInput().value === "higher" ||
+   educationInput().value === "college") &&
+  hour >= 10 && hour < 16
+) {
+  activity = "🏫 School / College";
+}
+
     else {
       const t = studyData[index % studyData.length];
       activity = `📘 ${t.subject} – ${t.topic}`;
