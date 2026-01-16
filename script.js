@@ -192,6 +192,58 @@ function generateWeeklyTimetable() {
   });
 }
 
+function downloadPDF() {
+  const printContent = document.getElementById("pdfContent").innerHTML;
+
+  const win = window.open("", "", "width=900,height=700");
+
+  win.document.write(`
+    <html>
+      <head>
+        <title>Study Routine</title>
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+          }
+          h2 {
+            text-align: center;
+            margin-bottom: 10px;
+          }
+          table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+          }
+          th, td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: left;
+          }
+          th {
+            background: #f2f2f2;
+            font-weight: bold;
+          }
+          .page-break {
+            page-break-before: always;
+          }
+        </style>
+      </head>
+      <body>
+        <h1 style="text-align:center;">Smart Study Planner</h1>
+        ${printContent}
+      </body>
+    </html>
+  `);
+
+  win.document.close();
+
+  // 🔥 THIS LINE FIXES MOST PDF ISSUES
+  win.focus();
+  win.print();
+}
+
+
 /***********************
   CLEAR
 ************************/
