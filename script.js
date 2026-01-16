@@ -210,56 +210,71 @@ function generateWeeklyTimetable() {
   });
 }
 
+
 function downloadPDF() {
-  const printContent = document.getElementById("pdfContent").innerHTML;
+  const pdfContent = document.getElementById("pdfContent");
 
-  const win = window.open("", "", "width=900,height=700");
+  if (!pdfContent) {
+    alert("PDF content not found");
+    return;
+  }
 
-  win.document.write(`
+  const printWindow = window.open("", "_blank", "width=900,height=650");
+
+  printWindow.document.open();
+  printWindow.document.write(`
+    <!DOCTYPE html>
     <html>
-      <head>
-        <title>Study Routine</title>
-        <style>
-          body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-          }
-          h2 {
-            text-align: center;
-            margin-bottom: 10px;
-          }
-          table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-          }
-          th, td {
-            border: 1px solid #000;
-            padding: 8px;
-            text-align: left;
-          }
-          th {
-            background: #f2f2f2;
-            font-weight: bold;
-          }
-          .page-break {
-            page-break-before: always;
-          }
-        </style>
-      </head>
-      <body>
-        <h1 style="text-align:center;">Smart Study Planner</h1>
-        ${printContent}
-      </body>
+    <head>
+      <title>Study Routine</title>
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          padding: 20px;
+        }
+        h1, h2, h3 {
+          text-align: center;
+        }
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-top: 10px;
+        }
+        th, td {
+          border: 1px solid #000;
+          padding: 8px;
+          text-align: left;
+        }
+        th {
+          background: #f0f0f0;
+          font-weight: bold;
+        }
+        ul {
+          list-style: none;
+          padding: 0;
+        }
+        li {
+          margin: 4px 0;
+        }
+      </style>
+    </head>
+    <body>
+      <h1>Smart Study Planner</h1>
+      ${pdfContent.innerHTML}
+    </body>
     </html>
   `);
 
-  win.document.close();
+  printWindow.document.close();
 
-  // 🔥 THIS LINE FIXES MOST PDF ISSUES
-  win.focus();
-  win.print();
+  // 🔥 CRITICAL FIX
+  printWindow.focus();
+  setTimeout(() => {
+    printWindow.print();
+    printWindow.close();
+  }, 500);
 }
+
 
 
 /***********************
