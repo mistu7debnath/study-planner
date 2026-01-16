@@ -68,21 +68,33 @@
   <!-- EVERYTHING BELOW IS EXPORTABLE -->
   <div id="pdfContent">
 
-    <!-- WEEKLY ROUTINE -->
-    <h2>📅 Weekly Study Timetable</h2>
+  <h2>📅 Weekly Study Timetable</h2>
 
-<table id="weeklyTable"
-  style="width:100%; border-collapse:collapse; margin-bottom:20px;"
-  border="1">
-  <thead>
-    <tr>
-      <th><b>Day</b></th>
-      <th><b>Time</b></th>
-      <th><b>Activity</b></th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table>
+  <table id="weeklyTable" border="1" style="width:100%; border-collapse:collapse;">
+    <thead>
+      <tr>
+        <th>Day</th>
+        <th>Time</th>
+        <th>Activity</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <h2>🕒 Daily Study Timetable</h2>
+
+  <table id="routineTable1" border="1" style="width:100%; border-collapse:collapse;">
+    <thead>
+      <tr>
+        <th>Time</th>
+        <th>Activity</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+</div>
+
 
 
     <!-- DAILY TIMETABLE -->
@@ -113,7 +125,6 @@
   <p id="progressText">0% Completed</p>
 
   <button class="clear" type="button" onclick="clearAll()">Clear Planner</button>
-</div>
 
 <script src="script.js"></script>
 </body>
