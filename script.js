@@ -25,7 +25,9 @@ function getMultiplier(education, standard) {
   if (education === "higher") return 1.8;
   if (education === "college") return 1.4;
   if (education === "neet") return 2.2;
+  if (education === "wbjee") return 2.2;
   if (education === "jee") return 2.3;
+  if (education === "jee_advanced") return 2.5;
   if (education === "upsc") return 2.8;
   return 1;
 }
@@ -48,28 +50,30 @@ function addTopic() {
   const topic = topicInput().value.trim();
   const difficulty = difficultyInput().value;
   const education = educationInput().value;
-  const standard = Number(standardInput().value);
   const routineType = document.getElementById("routineType").value;
 
+  // class is OPTIONAL for competitive exams
+  const standardValue = standardInput().value;
+  const standard = standardValue ? Number(standardValue) : null;
+
   if (!subject || !topic || !difficulty || !education || !routineType) {
-  alert("Please fill all required fields");
-  return;
-}
+    alert("Please fill all required fields");
+    return;
+  }
 
-if (
-  (education === "school" ||
-   education === "higher" ||
-   education === "college") &&
-  !standard
-) {
-  alert("Please select class / standard");
-  return;
-}
-
+  if (
+    (education === "school" ||
+      education === "higher" ||
+      education === "college") &&
+    standard === null
+  ) {
+    alert("Please select class / standard");
+    return;
+  }
 
   const hours = Math.round(
     getBaseHours(difficulty) *
-    getMultiplier(education, standard)
+      getMultiplier(education, standard ?? 10)
   );
 
   studyData.push({
@@ -81,7 +85,7 @@ if (
 
   renderPlan();
   generateDailyTimetable();
-  generateWeeklyTimetable();
+  generateWeeklyTable();
   clearInputs();
 }
 
@@ -127,7 +131,7 @@ function updateProgress() {
 ************************/
 function formatTime(hour) {
   let h = hour % 12 || 12;
-  let ampm = hour >= 12 ? "PM" : "AM";
+  let ampm = hour >= 12 && hour < 24 ? "PM" : "AM";
   return `${h}:00 ${ampm}`;
 }
 
@@ -136,7 +140,7 @@ function formatTime(hour) {
 ************************/
 function generateDailyTimetable() {
   const routineType = document.getElementById("routineType").value;
-  const tbody = document.querySelector("#routineTable tbody");
+  const tbody = document.querySelector("#routineTable1 tbody");
   tbody.innerHTML = "";
 
   if (!routineType || studyData.length === 0) return;
@@ -151,15 +155,12 @@ function generateDailyTimetable() {
     else if (hour === 13) activity = "🍽 Lunch";
     else if (hour === 20) activity = "🍲 Dinner";
     else if (
-  (educationInput().value === "school" ||
-   educationInput().value === "higher" ||
-   educationInput().value === "college") &&
-  hour >= 10 && hour < 16
-) {
-  activity = "🏫 School / College";
-}
-
-    else {
+      ["school", "higher", "college"].includes(educationInput().value) &&
+      hour >= 10 &&
+      hour < 16
+    ) {
+      activity = "🏫 School / College";
+    } else {
       const t = studyData[index % studyData.length];
       activity = `📘 ${t.subject} – ${t.topic}`;
       index++;
@@ -199,21 +200,16 @@ function generateWeeklyTable() {
     for (let hour = start; hour < end; hour++) {
       let activity = "";
 
-      // Meals
       if (hour === 8) activity = "🍳 Breakfast";
       else if (hour === 13) activity = "🍽 Lunch";
       else if (hour === 20) activity = "🍲 Dinner";
-
-      // School / College ONLY for non-competitive students
       else if (
         ["school","higher","college"].includes(educationInput().value) &&
-        hour >= 10 && hour < 16
+        hour >= 10 &&
+        hour < 16
       ) {
         activity = "🏫 School / College";
-      }
-
-      // Study slot
-      else {
+      } else {
         const t = studyData[topicIndex % studyData.length];
         activity = `📘 ${t.subject} – ${t.topic}`;
         topicIndex++;
@@ -230,72 +226,41 @@ function generateWeeklyTable() {
   });
 }
 
-
+/***********************
+  PDF DOWNLOAD (FIXED)
+************************/
 function downloadPDF() {
-  const pdfContent = document.getElementById("pdfContent");
+  generateDailyTimetable();
+  generateWeeklyTable();
 
-  if (!pdfContent) {
-    alert("PDF content not found");
-    return;
-  }
-
-  const printWindow = window.open("", "_blank", "width=900,height=650");
-
-  printWindow.document.open();
-  printWindow.document.write(`
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <title>Study Routine</title>
-      <style>
-        body {
-          font-family: Arial, sans-serif;
-          padding: 20px;
-        }
-        h1, h2, h3 {
-          text-align: center;
-        }
-        table {
-          width: 100%;
-          border-collapse: collapse;
-          margin-top: 10px;
-        }
-        th, td {
-          border: 1px solid #000;
-          padding: 8px;
-          text-align: left;
-        }
-        th {
-          background: #f0f0f0;
-          font-weight: bold;
-        }
-        ul {
-          list-style: none;
-          padding: 0;
-        }
-        li {
-          margin: 4px 0;
-        }
-      </style>
-    </head>
-    <body>
-      <h1>Smart Study Planner</h1>
-      ${pdfContent.innerHTML}
-    </body>
-    </html>
-  `);
-
-  printWindow.document.close();
-
-  // 🔥 CRITICAL FIX
-  printWindow.focus();
   setTimeout(() => {
+    const pdfContent = document.getElementById("pdfContent");
+    const printWindow = window.open("", "_blank");
+
+    printWindow.document.write(`
+      <html>
+        <head>
+          <title>Smart Study Planner</title>
+          <style>
+            body { font-family: Arial; padding: 20px; }
+            h1, h2 { text-align: center; }
+            table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+            th, td { border: 1px solid #000; padding: 6px; }
+            th { background: #f0f0f0; }
+          </style>
+        </head>
+        <body>
+          <h1>Smart Study Planner</h1>
+          ${pdfContent.innerHTML}
+        </body>
+      </html>
+    `);
+
+    printWindow.document.close();
+    printWindow.focus();
     printWindow.print();
-    printWindow.close();
-  }, 500);
+  }, 300);
 }
-
-
 
 /***********************
   CLEAR
@@ -311,8 +276,8 @@ function clearInputs() {
 function clearAll() {
   studyData = [];
   planList.innerHTML = "";
-  weeklyRoutine.innerHTML = "";
-  document.querySelector("#routineTable tbody").innerHTML = "";
+  document.querySelector("#weeklyTable tbody").innerHTML = "";
+  document.querySelector("#routineTable1 tbody").innerHTML = "";
   updateProgress();
 }
 
@@ -326,6 +291,5 @@ const educationInput = () => document.getElementById("educationType");
 const standardInput = () => document.getElementById("standard");
 
 const planList = document.getElementById("planList");
-const weeklyRoutine = document.getElementById("weeklyRoutine");
 const progressBar = document.getElementById("progressBar");
 const progressText = document.getElementById("progressText");
