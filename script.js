@@ -261,21 +261,40 @@ function downloadPDF() {
 /***********************
   CLEAR
 ************************/
-function clearInputs() {
+function clearAll() {
+  // 1️⃣ Clear data
+  studyData = [];
+
+  // 2️⃣ Clear recommended study plan
+  if (planList) planList.innerHTML = "";
+
+  // 3️⃣ Clear daily timetable
+  const dailyBody = document.querySelector("#routineTable tbody");
+  if (dailyBody) dailyBody.innerHTML = "";
+
+  // 4️⃣ Clear weekly timetable (GRID STYLE)
+  const weeklyHead = document.getElementById("weeklyHead");
+  const weeklyBody = document.getElementById("weeklyBody");
+
+  if (weeklyHead) weeklyHead.innerHTML = "";
+  if (weeklyBody) weeklyBody.innerHTML = "";
+
+  // 5️⃣ Reset progress
+  progressBar.style.width = "0%";
+  progressText.innerText = "0% Completed";
+
+  // 6️⃣ Reset all inputs
   subjectInput().value = "";
   topicInput().value = "";
   difficultyInput().value = "";
   educationInput().value = "";
   standardInput().value = "";
+  document.getElementById("routineType").value = "";
+
+  // 7️⃣ Optional: scroll to top for better UX
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-function clearAll() {
-  studyData = [];
-  planList.innerHTML = "";
-  document.querySelector("#weeklyTable tbody").innerHTML = "";
-  document.querySelector("#routineTable1 tbody").innerHTML = "";
-  updateProgress();
-}
 
 /***********************
   DOM SHORTCUTS
