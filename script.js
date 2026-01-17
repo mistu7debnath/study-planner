@@ -179,51 +179,47 @@ function generateDailyTimetable() {
   WEEKLY TIMETABLE
 ************************/
 function generateWeeklyTable() {
-  const tbody = document.querySelector("#weeklyTable tbody");
+  const tbody = document.querySelector("#weeklyGrid tbody");
   tbody.innerHTML = "";
 
   if (studyData.length === 0) return;
 
   const routineType = document.getElementById("routineType").value;
-  if (!routineType) return;
-
   const { start, end } = getRoutineTime(routineType);
 
-  const days = [
-    "Monday","Tuesday","Wednesday",
-    "Thursday","Friday","Saturday","Sunday"
-  ];
+  const days = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 
   let topicIndex = 0;
 
-  days.forEach(day => {
-    for (let hour = start; hour < end; hour++) {
-      let activity = "";
+  for (let hour = start; hour < end; hour++) {
+    const row = document.createElement("tr");
 
-      if (hour === 8) activity = "🍳 Breakfast";
-      else if (hour === 13) activity = "🍽 Lunch";
-      else if (hour === 20) activity = "🍲 Dinner";
+    // Time column
+    let rowHTML = `<td><b>${formatTime(hour)} – ${formatTime(hour + 1)}</b></td>`;
+
+    days.forEach(() => {
+      let cell = "";
+
+      if (hour === 8) cell = "🍳 Breakfast";
+      else if (hour === 13) cell = "🍽 Lunch";
+      else if (hour === 20) cell = "🍲 Dinner";
       else if (
         ["school","higher","college"].includes(educationInput().value) &&
-        hour >= 10 &&
-        hour < 16
+        hour >= 10 && hour < 16
       ) {
-        activity = "🏫 School / College";
+        cell = "🏫 School / College";
       } else {
         const t = studyData[topicIndex % studyData.length];
-        activity = `📘 ${t.subject} – ${t.topic}`;
+        cell = `${t.subject}<br><small>${t.topic}</small>`;
         topicIndex++;
       }
 
-      const row = document.createElement("tr");
-      row.innerHTML = `
-        <td><b>${day}</b></td>
-        <td>${formatTime(hour)} – ${formatTime(hour + 1)}</td>
-        <td>${activity}</td>
-      `;
-      tbody.appendChild(row);
-    }
-  });
+      rowHTML += `<td>${cell}</td>`;
+    });
+
+    row.innerHTML = rowHTML;
+    tbody.appendChild(row);
+  }
 }
 
 /***********************
