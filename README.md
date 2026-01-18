@@ -17,14 +17,12 @@ Unclear study goals
 Exam and backlog pressure
 
 
+
 Smart Study Planner helps by:
 
 Organizing study routines visually
-
 Making planning simple and flexible
-
 Reducing mental load and anxiety
-
 Encouraging discipline and consistency
 
 
