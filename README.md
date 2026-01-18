@@ -10,8 +10,3 @@ This project focuses on reducing stress by giving students a clear, organized wa
 
 
 
-📊 Progress Tracking:
-
-Mark completed topics.
-Visual progress bar
-Percentage-based completion tracking
