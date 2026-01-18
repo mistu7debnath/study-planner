@@ -41,7 +41,6 @@ Many students feel anxious after semester results due to:
 ## 🌱 Future Improvements
 
 - Planner page (daily & weekly routine)
-- Login and sign-up system
 -  Local storage support
 
 
