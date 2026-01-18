@@ -24,4 +24,12 @@ Many students feel anxious after semester results due to:
 
 ---
 
+## ✨ Current Features
+
+- 🏠 Home page with project introduction
+- 🎨 Clean and student-friendly UI
+- 📱 Responsive design
+- ⚙️ Basic JavaScript interactivity
+
+🚧 Login, sign-up, and planner features will be added in future updates.
 
