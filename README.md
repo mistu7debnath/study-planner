@@ -32,7 +32,7 @@ Many students feel anxious after semester results due to:
 - ⚙️ Basic JavaScript interactivity
 
 
-## 🛠️ Technologies Used here
+## 🛠️ Technologies Used here:
 
 - HTML5 – Structure
 - CSS3 – Styling and layout
