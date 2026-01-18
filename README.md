@@ -31,5 +31,5 @@ Many students feel anxious after semester results due to:
 - 📱 Responsive design
 - ⚙️ Basic JavaScript interactivity
 
-🚧 Login, sign-up, and planner features will be added in future updates.
+
 
