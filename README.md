@@ -9,6 +9,13 @@ This project focuses on reducing stress by giving students a clear, organized wa
 
 🧠 Why Smart Study Planner?
 
+Many students feel anxious after semester results due to:
 
+Confusing schedules
+
+Poor time management
+Unclear study goals
+
+Exam and backlog pressure
 
 
