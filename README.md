@@ -43,8 +43,8 @@ Many students feel anxious after semester results due to:
 - Planner page (daily & weekly routine)
 -  Local storage support
 -   Progress tracking
--   Login and sign-up system
--   - Dark/Light mode
+-  Login and sign-up system
+-  Dark/Light mode
 
   
 
