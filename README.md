@@ -5,7 +5,9 @@ A simple, student‑friendly web application designed to help manage semester sc
 This project focuses on reducing stress by giving students a clear, organized way to plan their daily and weekly studies, track tasks, and stay consistent.
 
 
+.
 
+🧠 Why Smart Study Planner?
 
 
 
