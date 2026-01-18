@@ -42,5 +42,7 @@ Many students feel anxious after semester results due to:
 
 - Planner page (daily & weekly routine)
 - Login and sign-up system
+-  Local storage support
+
 
 
