@@ -44,6 +44,8 @@ Many students feel anxious after semester results due to:
 -  Local storage support
 -   Progress tracking
 -   Login and sign-up system
+-   - Dark/Light mode
+
   
 
 
