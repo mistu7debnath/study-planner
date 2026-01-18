@@ -38,8 +38,9 @@ Many students feel anxious after semester results due to:
 - CSS3 – Styling and layout
 - JavaScript – Interactivity
 
-  ## 🌱 Future Improvements
+## 🌱 Future Improvements
 
 - Planner page (daily & weekly routine)
+- Login and sign-up system
 
 
