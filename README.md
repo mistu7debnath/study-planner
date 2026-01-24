@@ -59,5 +59,6 @@ smart-study-planner/
 ├── style.css    # Styling
 └── script.js    # JavaScript logic
 
+🔮 Planner page, login, and sign-up pages are planned for future versions.
 
 
