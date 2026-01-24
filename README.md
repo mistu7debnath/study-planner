@@ -98,6 +98,6 @@ No additional setup is required.
 
 ## 📌 Author
 
-Mistu Debnath  
+Manisha Debnath  
 Student | Front-End Learner | Project-Based Explorer
 
