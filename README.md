@@ -15,6 +15,8 @@ Many students feel anxious after semester results due to:
 * Unclear study goals
 * Exam and backlog pressure
 
+---
+
 **Smart Study Planner** helps by:
 
 * Organizing study routines visually
