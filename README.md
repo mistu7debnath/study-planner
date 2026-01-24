@@ -53,4 +53,4 @@ smart-study-planner/
 
 🔮 Planner page, login, and sign-up pages are planned for future versions.
 
-
+---
