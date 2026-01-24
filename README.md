@@ -93,3 +93,5 @@ No additional setup is required.
 - DOM manipulation basics
 - UI/UX thinking for real-world problems
 - Building projects focused on student well-being
+
+---
