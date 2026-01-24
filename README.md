@@ -51,5 +51,13 @@ Many students feel anxious after semester results due to:
 
   ----
 
+## 🧩 Current Project Structure
+
+smart-study-planner/
+│
+├── index.html   # Home page
+├── style.css    # Styling
+└── script.js    # JavaScript logic
+
 
 
