@@ -85,4 +85,4 @@ No additional setup is required.
 - Progress tracking
 - Dark/Light mode
 
-
+---
