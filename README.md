@@ -77,3 +77,12 @@ No additional setup is required.
 
 ---
 
+## 🌱 Future Improvements
+
+- Planner page (daily & weekly routine)
+- Login and sign-up system
+- Local storage support
+- Progress tracking
+- Dark/Light mode
+
+
