@@ -67,7 +67,7 @@ smart-study-planner/
 ## 🚀 How to Run the Project
 
 1. Clone the repository:
-   git clone https://github.com/your-username/smart-study-planner.git
+   git clone https://github.com/mistu7debnath/smart-study-planner.git
 
 2. Open the project folder
 
