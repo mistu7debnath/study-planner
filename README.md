@@ -61,3 +61,5 @@ smart-study-planner/
 - Students preparing for exams
 - Learners facing semester-related stress
 - Beginners learning front-end development
+
+---
