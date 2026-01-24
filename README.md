@@ -43,16 +43,6 @@ Many students feel anxious after semester results due to:
 
 ---
 
-## 🌱 Future Improvements:
-
-- Planner page (daily & weekly routine)
--  Local storage support
--   Progress tracking
--  Login and sign-up system
--  Dark/Light mode
-
-  ----
-
 ## 🧩 Current Project Structure
 
 smart-study-planner/
