@@ -63,3 +63,14 @@ smart-study-planner/
 - Beginners learning front-end development
 
 ---
+
+## 🚀 How to Run the Project
+
+1. Clone the repository:
+   git clone https://github.com/your-username/smart-study-planner.git
+
+2. Open the project folder
+
+3. Run index.html in any modern web browser
+
+No additional setup is required.
