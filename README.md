@@ -74,3 +74,6 @@ smart-study-planner/
 3. Run index.html in any modern web browser
 
 No additional setup is required.
+
+---
+
