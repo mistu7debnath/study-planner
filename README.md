@@ -54,3 +54,10 @@ smart-study-planner/
 🔮 Planner page, login, and sign-up pages are planned for future versions.
 
 ---
+
+## 🎓 Target Users
+
+- College and university students
+- Students preparing for exams
+- Learners facing semester-related stress
+- Beginners learning front-end development
