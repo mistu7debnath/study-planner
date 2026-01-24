@@ -95,3 +95,9 @@ No additional setup is required.
 - Building projects focused on student well-being
 
 ---
+
+## 📌 Author
+
+Mistu Debnath  
+Student | Front-End Learner | Project-Based Explorer
+
