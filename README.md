@@ -17,8 +17,6 @@ The project is currently in Phase 1 (Core Setup) and will gradually grow with mo
 
 ## 🧠 Why Smart Study Planner?
 
-After semester results, many students feel:
-
 - Anxiety about marks
 - Too many subjects to cover
 - Poor time management
