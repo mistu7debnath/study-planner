@@ -58,11 +58,12 @@ Smart Study Planner helps by:
 
 smart-study-planner/
 │
-├── index.html   # Home page
+├── index.html   # Main homepage
 ├── style.css    # Styling
 └── script.js    # JavaScript logic
 
-🔮 Planner page, login, and sign-up pages are planned for future versions.
+Currently only core files are included. More pages will be added gradually.
+
 
 ---
 
