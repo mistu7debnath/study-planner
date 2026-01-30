@@ -67,10 +67,11 @@ smart-study-planner/
 
 ## 🎓 Target Users
 
-- College and university students
-- Students preparing for exams
-- Learners facing semester-related stress
-- Beginners learning front-end development
+- College & university students
+- Exam preparation learners
+- Beginners learning web development
+- Anyone wanting better study planning
+
 
 ---
 
