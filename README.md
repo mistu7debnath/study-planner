@@ -70,7 +70,7 @@ smart-study-planner/
 - College & university students
 - Exam preparation learners
 - Beginners learning web development
-- Anyone wanting better study planning
+- Anyone who wants better study planning
 
 
 ---
