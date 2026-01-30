@@ -16,14 +16,7 @@ The project is currently in Phase 1 (Core Setup) and will gradually grow with mo
 
 
 
-## 🧠 Why Smart Study Planner?
 
-Many students feel anxious after semester results due to:
-
-* Confusing schedules
-* Poor time management
-* Unclear study goals
-* Exam and backlog pressure
 
 ---
 
