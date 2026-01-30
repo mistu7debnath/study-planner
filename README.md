@@ -4,6 +4,15 @@ A simple, student-friendly web application built to help students organize their
 
 This project turns stress into clear action steps by helping students plan smarter, not harder.
 
+## 📖 Project Overview
+
+Smart Study Planner is a beginner-friendly front-end project that focuses on solving a real student problem — lack of planning and poor time management.
+
+It provides a clean and simple space where students can structure their day, set goals, and stay consistent with their study routine.
+
+The project is currently in Phase 1 (Core Setup) and will gradually grow with more features like login, planner pages, and progress tracking.
+
+
 
 ## 🧠 Why Smart Study Planner?
 
