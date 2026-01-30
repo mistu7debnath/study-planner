@@ -19,7 +19,7 @@ The project is currently in Phase 1 (Core Setup) and will gradually grow with mo
 ## 🧠 Why Smart Study Planner?
 
 - Anxiety about marks
-- Too many subjects to cover in short time
+- Too many subjects to cover within short time
 - Poor time management
 - No clear daily goals
 - Mental overload
