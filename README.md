@@ -43,7 +43,7 @@ Smart Study Planner helps by:
 - Basic JavaScript interactivity
 - Lightweight and fast 
 
-🚧 Login, planner page, and authentication features will be added in future updates.
+🚧 planner page, and authentication features will be added in future updates.
 ---
 
 ## 🛠️ Technologies Used here:
