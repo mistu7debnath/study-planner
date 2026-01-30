@@ -27,7 +27,7 @@ The project is currently in Phase 1 (Core Setup) and will gradually grow with mo
 Smart Study Planner helps by:
 
 - Breaking big goals into small tasks
-- Creating daily study routines
+- Creating daily study routines for students
 - Improving consistency
 - Reducing last-minute exam stress
 - Making planning simple and visual
