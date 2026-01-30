@@ -46,10 +46,10 @@ Smart Study Planner helps by:
 🚧 planner page, and authentication features will be added in future updates.
 ---
 
-## 🛠️ Technologies Used here:
+## 🛠️ Technologies Used
 
 - HTML5 – Structure
-- CSS3 – Styling and layout
+- CSS3 – Styling and responsiveness
 - JavaScript – Interactivity
 
 ---
