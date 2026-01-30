@@ -15,7 +15,23 @@ It provides a clean and simple space where students can structure their day, set
 The project is currently in Phase 1 (Core Setup) and will gradually grow with more features like login, planner pages, and progress tracking.
 
 
+## 🧠 Why Smart Study Planner?
 
+After semester results, many students feel:
+
+- Anxiety about marks
+- Too many subjects to cover
+- Poor time management
+- No clear daily goals
+- Mental overload
+
+Smart Study Planner helps by:
+
+- Breaking big goals into small tasks
+- Creating daily study routines
+- Improving consistency
+- Reducing last-minute exam stress
+- Making planning simple and visual
 
 
 ---
