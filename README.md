@@ -62,8 +62,6 @@ smart-study-planner/
 ├── style.css    # Styling
 └── script.js    # JavaScript logic
 
-Currently only core files are included. More pages will be added gradually.
-
 
 ---
 
