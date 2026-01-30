@@ -44,13 +44,14 @@ Smart Study Planner helps by:
 
 ---
 
-## ✨ Current Features:
+## ✨ Current Features :
+- Home page with project introduction
+- Clean and minimal UI
+- Responsive design
+- Basic JavaScript interactivity
+- Lightweight and fast 
 
-- 🏠 Home page with project introduction
-- 🎨 Clean and student-friendly UI
-- 📱 Responsive design
-- ⚙️ Basic JavaScript interactivity
-
+🚧 Login, planner page, and authentication features will be added in future updates.
 ---
 
 ## 🛠️ Technologies Used here:
