@@ -35,14 +35,6 @@ Smart Study Planner helps by:
 
 ---
 
-**Smart Study Planner** helps by:
-
-* Organizing study routines visually
-* Making planning simple and flexible
-* Reducing mental load and anxiety
-* Encouraging discipline and consistency
-
----
 
 ## ✨ Current Features :
 - Home page with project introduction
