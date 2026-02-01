@@ -95,6 +95,8 @@ No additional setup is required.
 - Local storage support
 - Progress tracking
 - Dark/Light mode
+-  Reminders & notifications
+
 
 ---
 
