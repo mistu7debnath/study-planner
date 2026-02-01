@@ -106,6 +106,7 @@ No additional setup is required.
 - Practice front-end development skills
 - Create a real-world useful tool
 
+---
 
 ## 💡 Learning Outcome
 
