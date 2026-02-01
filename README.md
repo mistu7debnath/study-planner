@@ -97,6 +97,14 @@ No additional setup is required.
 - Dark/Light mode
 
 ---
+## 🎯 Key Goals of This Project
+
+- Help students manage time better
+- Reduce semester-related stress
+- Build daily study discipline
+- Practice front-end development skills
+- Create a real-world useful tool
+
 
 ## 💡 Learning Outcome
 
