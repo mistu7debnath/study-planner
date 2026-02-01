@@ -97,6 +97,7 @@ No additional setup is required.
 - Dark/Light mode
 
 ---
+
 ## 🎯 Key Goals of This Project
 
 - Help students manage time better
