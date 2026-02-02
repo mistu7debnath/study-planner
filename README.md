@@ -65,7 +65,7 @@ smart-study-planner/
 
 ---
 
-## 🎓 Target Users
+## 🎓 Target Users:
 
 - College & university students
 - Exam preparation learners
@@ -88,7 +88,7 @@ No additional setup is required.
 
 ---
 
-## 🌱 Future Improvements
+## 🌱 Future Improvements:
 
 - Planner page (daily & weekly routine)
 - Login and sign-up system
