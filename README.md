@@ -128,7 +128,7 @@ Student | Front-End Learner | Project-Based Explorer
 
 ---
 
-## ❤️ Thank You
+##  Thank You
 
 Thanks for visiting my repo — your support keeps me motivated to build more!
 
