@@ -75,7 +75,7 @@ smart-study-planner/
 
 ---
 
-## 🚀 How to Run the Project
+## 🚀 How to Run the Project:
 
 1. Clone the repository:
    git clone https://github.com/mistu7debnath/smart-study-planner.git
@@ -102,7 +102,7 @@ No additional setup is required.
 
 ---
 
-## 🎯 Key Goals of This Project
+## 🎯 Key Goals of This Project:
 
 - Help students manage time better
 - Reduce semester-related stress
@@ -112,7 +112,7 @@ No additional setup is required.
 
 ---
 
-## 💡 Learning Outcome
+## 💡 Learning Outcome:
 
 - Hands-on HTML, CSS, and JavaScript practice
 - DOM manipulation basics
