@@ -1,7 +1,3 @@
-/* AUTH */
-.auth-box {
-  max-width: 400px;
-}
 /* ===== RESET ===== */
 * {
   margin: 0;
@@ -18,47 +14,53 @@ body {
   justify-content: center;
   align-items: center;
   padding: 20px;
-  color: #e41313;
+  color: #fff176; /* soft yellow text */
 }
 
 /* ===== CONTAINER ===== */
 .container {
   width: 100%;
   max-width: 520px;
+
+  /* GLASS + YELLOW GLOW */
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(16px);
   border-radius: 18px;
   padding: 28px;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.45);
+
+  box-shadow:
+    0 25px 50px rgba(0,0,0,0.45),
+    0 0 30px rgba(255, 217, 61, 0.35); /* yellow glow */
+
   animation: float 6s ease-in-out infinite;
   position: relative;
   overflow: hidden;
-  z-index: 1; /* 🔑 keep content above */
 }
 
-/* sparkle glow FIXED */
+/* sparkle glow */
 .container::before {
   content: "";
   position: absolute;
   inset: -50%;
-  background: radial-gradient(circle, rgba(255,255,255,0.15), transparent 60%);
+  background: radial-gradient(circle, rgba(255,217,61,0.25), transparent 60%);
   animation: sparkle 10s linear infinite;
-  pointer-events: none; /* 🔑 allow clicks */
-  z-index: -1;          /* 🔑 push behind */
+  pointer-events: none;
+  z-index: -1;
 }
-
 
 /* ===== HEADINGS ===== */
 h1 {
   text-align: center;
   margin-bottom: 20px;
-  font-weight: 600;
+  font-weight: 700;
+  color: #ffd93d; /* bright yellow */
+  text-shadow: 0 0 12px rgba(255,217,61,0.8);
 }
 
 h2 {
   margin: 22px 0 10px;
   font-size: 18px;
-  opacity: 0.9;
+  color: #ffe66d;
 }
 
 /* ===== FORM ===== */
@@ -72,28 +74,26 @@ input,
 select {
   padding: 12px 14px;
   border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.25);
-  background: rgba(255,255,255,0.15);
+
+  border: 1px solid rgba(255,217,61,0.4);
+  background: rgba(255,255,255,0.12);
+
   color: #fff;
   font-size: 14px;
-  outline: none;
   transition: 0.3s ease;
 }
 
-input::placeholder {
-  color: #dcdcdc;
-}
-
-/* IMPORTANT: Fix select dropdown issue */
-option {
-  background: #ffffff;
-  color: #000000;
-}
-
+/* focus glow */
 input:focus,
 select:focus {
-  border-color: #6dd5fa;
-  box-shadow: 0 0 10px rgba(109,213,250,0.7);
+  border-color: #ffd93d;
+  box-shadow: 0 0 12px rgba(255,217,61,0.9);
+}
+
+/* dropdown fix */
+option {
+  background: #fff;
+  color: #000;
 }
 
 /* ===== BUTTONS ===== */
@@ -103,32 +103,26 @@ button {
   border: none;
   cursor: pointer;
   font-weight: 600;
-  letter-spacing: 0.4px;
-  background: linear-gradient(135deg, #36d1dc, #5b86e5);
-  color: #fff;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  /* yellow + blue gradient */
+  background: linear-gradient(135deg, #ffd93d, #36d1dc);
+
+  color: #000;
+  transition: 0.3s ease;
 }
 
 button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(91,134,229,0.6);
+  box-shadow: 0 0 18px rgba(255,217,61,0.9);
 }
 
 /* ===== STUDY LIST ===== */
-ul {
-  list-style: none;
-  margin-top: 10px;
-}
-
 li {
   background: rgba(255,255,255,0.15);
-  margin-bottom: 8px;
+  border-left: 4px solid #ffd93d; /* yellow highlight */
   padding: 10px 12px;
   border-radius: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  animation: fadeIn 0.4s ease;
+  margin-bottom: 8px;
 }
 
 /* ===== PROGRESS ===== */
@@ -143,19 +137,17 @@ li {
 #progressBar {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #00f260, #0575e6);
-  transition: width 0.4s ease;
-}
 
-#progressText {
-  margin-top: 6px;
-  font-size: 14px;
+  /* yellow progress */
+  background: linear-gradient(90deg, #ffd93d, #fff176);
+  box-shadow: 0 0 10px rgba(255,217,61,0.8);
+
+  transition: width 0.4s ease;
 }
 
 /* ===== CLEAR BUTTON ===== */
 .clear {
-  margin-top: 16px;
-  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  background: linear-gradient(135deg, #ff4b2b, #ff416c);
 }
 
 /* ===== ANIMATIONS ===== */
@@ -167,16 +159,4 @@ li {
 @keyframes sparkle {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 480px) {
-  .container {
-    padding: 22px;
-  }
 }
