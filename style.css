@@ -22,7 +22,7 @@ body {
 /* ===== CONTAINER ===== */
 .container {
   width: 100%;
-  max-width: 520px;
+  max-width: 800px;
 
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(18px);
