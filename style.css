@@ -9,14 +9,14 @@
 /* ===== BODY ===== */
 body {
   min-height: 100vh;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  background: linear-gradient(135deg, #f0f0f0, #d4e4bc, #e6f3ff);
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
 
-  /* soft yellow text */
-  color: #fff176;
+  /* dark text for light background */
+  color: #333333;
 }
 
 /* ===== CONTAINER ===== */
