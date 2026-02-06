@@ -129,6 +129,6 @@ Student | Front-End Learner | Project-Based Explorer
 
 ##  Thank You
 
-Thank you for taking the time to explore my repository.
+Thank you so much for taking the time to explore my repository.
 
 ---
