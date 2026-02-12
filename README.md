@@ -121,7 +121,7 @@ No additional setup is required.
 
 ---
 
-## 📌 Author
+## 📌 Author:
 
 Manisha Debnath  
 Student | Front-End Learner | Project-Based Explorer
