@@ -52,6 +52,7 @@ Smart Study Planner helps by:
 
 ---
 
+
 ## 🧩 Current Project Structure:
 
 smart-study-planner/
