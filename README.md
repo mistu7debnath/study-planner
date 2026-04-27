@@ -104,7 +104,7 @@ No additional setup is required.
 
 ## 🎯 Key Goals of This Project:
 
-- Help students manage time better
+- Help students to manage time better
 - Reduce semester-related stress
 - Build daily study discipline
 - Practice front-end development skills
