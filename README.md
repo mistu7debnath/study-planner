@@ -64,7 +64,7 @@ smart-study-planner/
 
 ---
 
-## 🎓 Target Users of this project:
+## 🎓 Target Users for this project:
 
 - College & university students
 - School students
