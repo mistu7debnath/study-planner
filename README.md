@@ -112,7 +112,7 @@ No additional setup is required.
 
 ---
 
-## 💡 Learning Outcome:
+## 💡 Learning Outcomes:
 
 - Hands-on HTML, CSS, and JavaScript practice
 - DOM manipulation basics
