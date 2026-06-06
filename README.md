@@ -47,7 +47,7 @@ Smart Study Planner helps by:
 ## 🛠️ Technologies Used for this application :
 
 - HTML5 – Structure
-- CSS3 – Styling and responsiveness
+- CSS3 – Styling and for responsiveness
 - JavaScript – Interactivity
 
 ---
