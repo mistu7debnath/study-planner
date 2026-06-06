@@ -17,7 +17,7 @@ It provides a clean and simple interface where students can structure their day,
 ## 🧠 Why Smart Study Planner?
 
 - Anxiety about the marks
-- Too many subjects to cover within short time
+- Too many subjects to cover within short time span
 - Poor time management
 - No clear daily goals
 - Mental overload
