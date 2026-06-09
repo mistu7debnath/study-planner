@@ -14,7 +14,7 @@ It provides a clean and simple interface where students can structure their day,
 
 ---
 
-## 🧠 Why Smart Study Planner?
+## 🧠 Why Smart Study Planner needed?
 
 - Anxiety about the marks
 - Too many subjects to cover within short time span
