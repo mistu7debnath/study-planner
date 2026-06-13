@@ -1,6 +1,6 @@
 # 📚 Smart Study Planner:
 
-A simple, student-friendly web application built that help students for organizing their studies, manage their time effectively and reduce semester exam anxiety through structured planning and daily consistency.
+A simple, student-friendly web application built that help students for organizing their studies, manage their time management and reduce semester exam anxiety through structured planning and daily consistency.
 
 This project turns stress into clear action steps by helping students plan smarter, not harder.
 
