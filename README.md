@@ -124,7 +124,7 @@ No additional setup is required.
 ## 📌 Author:
 
 Manisha Debnath  
-Student | Front-End Learner | Project-Based Explorer
+Student | Front-End developer | Project-Based Explorer
 
 ---
 
